@@ -1,1 +1,118 @@
 /* Empty. Add your own CSS if you like */
+#mobile-web {
+    overflow: initial;
+    body {
+      overflow: auto;
+    }
+    @media (max-width: 767px){
+      .view-container {
+        position: static;
+      }
+      .scroll-content {
+        position: static;
+        top: initial;
+        right: initial;
+        bottom: initial;
+        left: initial;
+        display: block;
+      }
+      ion-side-menus {
+        position: relative;
+        top: initial;
+        right: initial;
+        bottom: initial;
+        left: initial;
+        overflow: initial;
+      }
+      ion-side-menu-content {
+        position: relative;
+        top: initial;
+        right: initial;
+        bottom: initial;
+        left: initial;
+        overflow: initial;
+        ion-nav-view {
+          >.pane {
+            position: static;
+            top: initial;
+            right: initial;
+            bottom: initial;
+            left: initial;
+            overflow: initial;
+          }
+        }
+      }
+      ion-view {
+        position: static;
+        top: initial;
+        right: initial;
+        bottom: initial;
+        left: initial;
+        overflow: initial;
+      }
+      .bar-header {
+        position: static;
+        top: initial;
+        left: initial;
+        right: initial;
+        bottom: initial;
+      }
+      .tabs-striped {
+        .tabs {
+          position: static;
+          top: initial;
+          right: initial;
+          bottom: initial;
+          left: initial;
+        }
+      }
+    }
+    .menu-open {
+      body {
+        overflow: hidden;
+      }
+      .view-container {
+        position: absolute;
+      }
+      ion-side-menus {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+      }
+      ion-side-menu-content {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        ion-nav-view {
+          >.pane {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            overflow: hidden;
+          }
+        }
+      }
+      ion-view {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+      }
+    }
+    .modal-open {
+      overflow: hidden;
+      .modal, .modal-backdrop {
+        overflow: auto;
+      }
+    }
+  }
