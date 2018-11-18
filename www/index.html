@@ -47,10 +47,11 @@
       <ion-content>
         <!--Conteudo da pagina-->
 
+<!--Antigo-->
         <div class="list card" ng-repeat="task in tasks track by $index">
           
           <div class="item item-divider">
-            <span [ng-bind]="task.title"></span>
+            <span ng-bind="task.title"></span>
           </div>
           <div class="item item-body">
             <strong>Title: <span ng-bind="task.title"></span></strong>
@@ -60,7 +61,7 @@
           </div>
 
           <div class="item tabs tabs-secondary tabs-icon-left">
-            <span class="item item-checkbox">
+            <span class="tab-item assertive">
               <label class="checkbox">
                 <input type="checkbox" ng-model="task.complete" ng-click="completeTask($index)">
               </label>
