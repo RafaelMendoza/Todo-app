@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <meta name="viewport" content="viewport-fit=cover,initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
     <title></title>
 
     <link rel="manifest" href="manifest.json">
@@ -25,6 +25,8 @@
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="https://unpkg.com/ionicons@4.2.2/dist/ionicons.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -32,14 +34,87 @@
     <!-- your app's js -->
     <script src="js/app.js"></script>
   </head>
-  <body ng-app="starter">
+  <body ng-app="todo-app" ng-controller="main" ng-init="getTasks()">
 
     <ion-pane>
       <ion-header-bar class="bar-stable">
-        <h1 class="title">Ionic Blank Starter</h1>
+        <h1 class="title">Todo App</h1>
+
+        <button class="button button-icon" ng-click="openTaskModal()">
+          <ion-icon name="add"></ion-icon>
+        </button>
       </ion-header-bar>
       <ion-content>
+        <!--Conteudo da pagina-->
+
+        <div class="list card" ng-repeat="task in tasks track by $index">
+          
+          <div class="item item-divider">
+            <span [ng-bind]="task.title"></span>
+          </div>
+          <div class="item item-body">
+            <strong>Title: <span ng-bind="task.title"></span></strong>
+            <p>
+              <span ng-bind="task.content"></span>
+            </p>
+          </div>
+
+          <div class="item tabs tabs-secondary tabs-icon-left">
+            <span class="item item-checkbox">
+              <label class="checkbox">
+                <input type="checkbox" ng-model="task.complete" ng-click="completeTask($index)">
+              </label>
+            </span>
+
+            <a class="tab-item assertive" ng-click="removeTask($index)">
+              <i class="icon ion-android-close"></i>
+            </a>
+
+          </div>
+        </div>
+
       </ion-content>
     </ion-pane>
+
+
+    <script id="templates/new-task-modal.html" type="text/ng-template">
+      <ion-modal-view>
+        <!--Header-->
+        <ion-header-bar class="bar-dark">
+          <h1 class="title">Create a new Task</h1>
+          <button class="button button-icon" ng-click="closeTaskModal()">
+            <i class="icon ion-android-close"></i>
+          </button>
+        </ion-header-bar>
+        <!--Content-->
+        <ion-content>
+          <!--form-->
+          <form ng-submit="createTask()">
+            <div class="list list-inset">
+              <label class="item item-input">
+                <input ng-model="task.title" type="text" placeholder="Task title" />
+              </label>
+              <label>
+                <textarea ng-model="task.content" rows="5" placeholder="Task content"></textarea>
+              </label>
+              
+              <ul class="list">
+                <li class="item item-toggle">
+                  Completed?
+                  <label class="toggle toggle-balanced">
+                    <input type="checkbox" ng-model="task.completed" />
+                    <div class="track">
+                      <div class="handle"></div>
+                    </div>
+                  </label>
+                </li>
+              </ul>
+              <button type="submit" class="button button-block button-positive">Create task</button>
+            </div>
+          </form>
+        </ion-content>
+      </ion-modal-view>
+    </script> 
   </body>
 </html>
+
